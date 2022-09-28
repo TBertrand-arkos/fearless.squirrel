@@ -23,9 +23,8 @@ function update()
         player1.accelerate(moveDistance);
     if (keyboard.pressed("down"))
         player1.decelerate(moveDistance);
-
-
-
+    if(player1.life <= 0)
+        player1.dead();
 
     player1.move();
     ennemy.move();
