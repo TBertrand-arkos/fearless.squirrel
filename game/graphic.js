@@ -58,6 +58,14 @@ function Ground(color, size_x, size_y, nb_tile)
                 tmpGround.position.y = y;
                 scene.add(tmpGround);
             }
+            if (x == (maxX+minX)/2+sizeOfTileX && y == (maxY+minY)/2) {
+                tmpGround = new THREE.Mesh(
+                new THREE.PlaneGeometry(sizeOfTileX-10, sizeOfTileY-10),
+                new THREE.MeshLambertMaterial({color: colors[Math.floor(Math.random()*(colors.length-1))], transparent: true, opacity: 0.6}));
+                tmpGround.position.x = x;
+                tmpGround.position.y = y;
+                scene.add(tmpGround);
+            }
             else
                 noGround.push([x, y]);
         }
