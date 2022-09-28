@@ -13,7 +13,7 @@ A video game with three.js
 - [X] : As a player, I want to see a little spaceship
 - [X] : As a player, I want to move this little spaceship
 - [X] : As a player, I want to a map with a tiles
-- [X] : As a player, I want to fall when I have no tile under me
+- [ ] : As a player, I want to fall when I have no tile under me
 - [X] : As a player, I want to restart the game, if I fall
 
 
