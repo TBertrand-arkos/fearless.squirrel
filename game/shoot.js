@@ -79,6 +79,15 @@ function player_collision()
     if ( y > HEIGHT )
         player1.graphic.position.y -= y - HEIGHT;
 
+    if (Math.abs(player1.graphic.position.x) >= ennemy.position.x - WIDTH/100 &&
+        Math.abs(player1.graphic.position.x) <= ennemy.position.x + WIDTH/100 &&
+        Math.abs(player1.graphic.position.y) >= ennemy.position.y - HEIGHT/100 &&
+        Math.abs(player1.graphic.position.y) <= ennemy.position.y + HEIGHT/100)
+    {
+        player1.life--;
+        player1.position = new THREE.Vector2(50, 0);
+    }
+
 }
 
 function player_falling()
@@ -115,7 +124,12 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+            if( player1.life >= 0) {
+                player1.life--;
+                player1.position = new THREE.Vector2(50, 0);
+            } else {
+                player1.dead();
+            }
         }
     }
 
