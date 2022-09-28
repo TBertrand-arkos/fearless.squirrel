@@ -7,6 +7,9 @@ var Ennemy = function(name, color, position, direction) {
     this.direction = direction;
     this.speed = 0;
 
+    this.run_r = 120;
+    this.run_l = 120;
+
     this.material = new THREE.MeshLambertMaterial({
         color: color,
         });
@@ -19,14 +22,6 @@ var Ennemy = function(name, color, position, direction) {
 
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), this.direction+(3*Math.PI/2));
 };
-
-Ennemy.prototype.dead = function () {
-    this.graphic.position.z = this.graphic.position.z-0.1;
-        //Nettoyage de la div container
-        $("#container").html("");
-        jQuery('#'+this.name+' >.life').text("Tu es mort !");
-        init();
-}
 
 Ennemy.prototype.accelerate = function (distance) {
     var max = 2;
@@ -46,18 +41,24 @@ Ennemy.prototype.decelerate = function (distance) {
     }
 };
 
-Ennemy.prototype.displayInfo = function () {
-    jQuery('#'+this.name+' >.life').text(this.life);
-}
+Ennemy.prototype.Right = function (angle, distance) {
+    this.direction = angle;
+    var min = -1;
 
-Ennemy.prototype.turnRight = function (angle) {
-    this.direction -= angle;
-    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,-1), +angle);
+    this.speed -= distance / 16;
+    if (this.speed <= min) {
+        this.speed = min;
+    }
 };
 
-Ennemy.prototype.turnLeft = function (angle) {
-    this.direction += angle;
-    this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), angle);
+Ennemy.prototype.Left = function (angle, distance) {
+    this.direction = -angle;
+    var min = -1;
+
+    this.speed -= distance / 16;
+    if (this.speed <= min) {
+        this.speed = min;
+    }
 };
 
 Ennemy.prototype.move = function () {
